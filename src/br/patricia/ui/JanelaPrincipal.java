@@ -26,7 +26,6 @@ public class JanelaPrincipal extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtConsultar;
 	private JTextArea txtArea;
-	PatriciaTree pt = new PatriciaTree();
 
 	public String[] capturaDicionario() {
 		ArrayList<String> lista = new ArrayList<String>();
@@ -34,14 +33,56 @@ public class JanelaPrincipal extends JFrame {
 		return linhas;
 	}
 
+	
+	final String variasListas[][] = {
+			{ "aaa", "aaa" },
+			{ "aaa", "aa" },
+			{ "aaa", "aaaa" },
+			{ "aaa", "aab" },
+			{ "aaa", "baa" },
+			{ "aaa", "ba" },
+			{ "ba", "aaa" },
+			{ "baaa", "aa" },
+			{ "aaa", "aba" },
+			{ "aab", "aaa" },
+			{ "aaa", "aa", "a" },
+			{ "aaa", "a", "aa" },
+			{ "aa", "a", "aaa" },
+			{ "aaa", "b" },
+			{ "b", "aaa", "c" },
+			{ "aaa", "ba", "a" },
+			{ "aaa", "a", "ba" },
+			{ "a", "ba", "aaa" },
+			{ "a", "aaa", "ba" },
+			{ "ba", "aaa", "a" },
+			{ "ba", "a", "aaa" },
+			{ "aaa", "ab", "a" },
+			{ "aaa", "a", "ab" },
+			{ "aaa", "ab", "a" },
+			{ "aaa", "a", "ab" },
+			{ "ab", "aaa", "a" },
+			{ "ab", "a", "aaa" },
+			{ "a", "aaa", "ab" },
+			{ "a", "ab", "aaa" },
+			//{ "", "", "" },
+	};
+	
 	public void clickGera() throws Exception {
-		String lista[] = capturaDicionario();
-		for (String vlr : lista) {
-			pt.add(vlr);
-		}
+		
+		//String lista[] = capturaDicionario();
+		PatriciaTree pt;
+
+		pt = new PatriciaTree();
+		pt.treina( variasListas[ 10 ] );
 
 		TreeViewer myTreeViewer = new TreeViewer( pt.raiz );
 		myTreeViewer.setVisible(true);
+		
+/*		
+		for( String[] lista : variasListas ) {
+			pt = new PatriciaTree();
+			pt.treina( lista );
+		} */
 	}
 
 	public void clickConsultar() {

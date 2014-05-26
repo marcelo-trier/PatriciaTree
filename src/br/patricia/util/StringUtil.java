@@ -11,14 +11,21 @@ public class StringUtil {
 		
 		int i;
 		// pega o menor valor
-		int maxI = (s1.length() < s2.length()) ? s1.length() : s2.length();
-
-		for (i = 0; i < maxI; ++i) {
+		int minLen = (s1.length() < s2.length()) ? s1.length() : s2.length();
+		
+		int maxLen = (s1.length() >= s2.length()) ? s1.length() : s2.length();
+		for (i = 0; i < minLen; ++i) {
 			if ( s1.charAt(i) != s2.charAt(i) )
 				break;
 		}
 
-		return (i < maxI) ? i : -1;
+		if( i >= maxLen ) {
+			throw new Exception( "A diferenca aqui tah com algum problemaaaa!" );
+		}
+
+		return i;
 	}
 
+	
+	
 }

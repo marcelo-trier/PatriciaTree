@@ -38,8 +38,8 @@ public class TreeViewer extends JFrame {
 	static public int CANVAS_WIDTH = 1500;
 
 	private int rootY = 10;
-	private int NODE_SIZE = 25;
-	private int ROW_HEIGHT = 50;
+	private int NODE_SIZE = 40;
+	private int ROW_HEIGHT = 30;
 	mxGraph graph = new mxGraph();
 	Object parent = graph.getDefaultParent();
 
@@ -62,7 +62,7 @@ public class TreeViewer extends JFrame {
 		int myX = (int) ((CANVAS_WIDTH * (index)) / (Math.pow(2, depth - 1) + 1));
 
 		Object rootVertex = graph.insertVertex(parent, null, root.toString(),
-				myX, depth * ROW_HEIGHT + rootY, NODE_SIZE, NODE_SIZE);
+				myX, depth * ROW_HEIGHT + rootY, NODE_SIZE, NODE_SIZE/2);
 
 		//Logger.log("new x coordinate=" + myX);
 
@@ -120,7 +120,7 @@ public class TreeViewer extends JFrame {
 		mxGraphComponent graphComponent = new mxGraphComponent(graph);
 
 		getContentPane().add(graphComponent);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize( CANVAS_WIDTH, CANVAS_HEIGHT);
 	}
 
