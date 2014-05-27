@@ -121,7 +121,7 @@ public class TreeViewer extends JFrame {
 
 		getContentPane().add(graphComponent);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize( CANVAS_WIDTH, CANVAS_HEIGHT);
+		setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
 	}
 
 

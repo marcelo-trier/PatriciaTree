@@ -46,6 +46,7 @@ public class JanelaPrincipal extends JFrame {
 			{ "aaa", "aba" },
 			{ "aab", "aaa" },
 			{ "aaa", "aa", "a" },
+			{ "aaa", "aa", "b" },
 			{ "aaa", "a", "aa" },
 			{ "aa", "a", "aaa" },
 			{ "aaa", "b" },
@@ -64,16 +65,21 @@ public class JanelaPrincipal extends JFrame {
 			{ "ab", "a", "aaa" },
 			{ "a", "aaa", "ab" },
 			{ "a", "ab", "aaa" },
+			{ "bb", "b", "aaa" },
 			//{ "", "", "" },
 	};
 	
 	public void clickGera() throws Exception {
 		
 		//String lista[] = capturaDicionario();
+		String umTeste[] = { "aaaa", "aab", "aa", "aaa" };
+		//String umTeste[] = variasListas[ 11 ];
+
 		PatriciaTree pt;
 
 		pt = new PatriciaTree();
-		pt.treina( variasListas[ 10 ] );
+		//pt.treina( variasListas[ 11 ] );
+		pt.treina( umTeste );
 
 		TreeViewer myTreeViewer = new TreeViewer( pt.raiz );
 		myTreeViewer.setVisible(true);

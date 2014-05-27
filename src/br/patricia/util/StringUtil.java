@@ -26,6 +26,11 @@ public class StringUtil {
 		return i;
 	}
 
+	public static char getChar( String str, int idx ) {
+		int len = str.length();
+		char umChar = ( len > idx ) ? str.charAt( idx ) : 0;
+		return umChar;
+	}
 	
 	
 }

@@ -1,6 +1,7 @@
 package br.patricia;
 
 import br.patricia.ui.TreeViewer;
+import br.patricia.util.StringUtil;
 
 
 public class PatriciaTree {
@@ -11,6 +12,24 @@ public class PatriciaTree {
 		for (String vlr : umaLista ) {
 			add(vlr);
 		}
+	}
+	
+	public Nodo buscaSemelhante( Nodo umNodo, String compara ) {
+
+		// quais situacoes aqui irah estar nulo?? Acho q somente a raiz... =)
+		if( umNodo == null )
+			return null;
+
+		// se for folha... jah retorna...
+		if( umNodo.tipo == TIPO.FIM )
+			return umNodo;
+
+		char umChar = StringUtil.getChar( compara, umNodo.index );
+		if( umChar <= umNodo.c )
+			return buscaSemelhante( umNodo.filhos[ FILHOS.ESQ.ordinal() ], compara );
+		else
+			return buscaSemelhante( umNodo.filhos[ FILHOS.DIR.ordinal() ], compara );
+		
 	}
 	
 	public Nodo adiciona(Nodo umNoh, String s) throws Exception {
@@ -42,8 +61,10 @@ public class PatriciaTree {
 			throw new Exception( "chegou em uma parte do codigo que nao entendi!" );
 
 		// se nao eh fim, o NOH eh meio...
-		int len = s.length();
-		char umChar = ( umNoh.index < len ) ? s.charAt( umNoh.index ) : 0;
+		//int len = s.length();
+		//char umChar = ( umNoh.index < len ) ? s.charAt( umNoh.index ) : 0;
+		
+		char umChar = StringUtil.getChar( s, umNoh.index );
 		
 		if( umChar <= umNoh.c )
 			novoNoh = adiciona( umNoh.filhos[ FILHOS.ESQ.ordinal() ], s );
@@ -53,7 +74,79 @@ public class PatriciaTree {
 		return novoNoh;
 	}
 
-	public void add(String s) throws Exception {
+	public void adicionaMeio( Nodo umNodo, Nodo novoMeio ) throws Exception {
+		// ufa, encontrou uma folha... agora simm...
+		if( umNodo.tipo == TIPO.FIM ) {
+			//if( umNodo == raiz )
+			//	raiz = novoMeio;
+			for( int i=0; i<novoMeio.filhos.length; i++ ) {
+				if( novoMeio.filhos[i] == null ) {
+					novoMeio.filhos[i] = umNodo;
+					Nodo pai = umNodo.pai;
+					if( pai == null && umNodo == raiz ) {
+						umNodo.pai = novoMeio;
+						novoMeio.pai = null;
+						raiz = novoMeio;
+						//novoMeio.adicionaFilho( umNodo );
+					} else if( pai != null && umNodo != raiz )
+						pai.trocaFilho(umNodo, novoMeio);
+					else
+						throw new Exception( "problemas ao adicionar ao meio" );
+				}
+			}
+		} else {
+			if( novoMeio.index < umNodo.index  ){
+				Nodo pai = umNodo.pai;
+				if( pai == null && umNodo == raiz ) {
+					umNodo.pai = novoMeio;
+					novoMeio.pai = null;
+					raiz = novoMeio;
+					novoMeio.adicionaFilho( umNodo );
+				} else if( pai != null && umNodo != raiz )
+					pai.trocaFilho( umNodo, novoMeio );
+				else
+					throw new Exception( "aaaaaaaaaa1" );
+			} else if( novoMeio.index > umNodo.index ) {
+				adicionaMeio( umNodo.filhos[ FILHOS.DIR.ordinal() ], novoMeio );
+			} else {
+				if( novoMeio.c <= umNodo.index ) {
+					Nodo pai = umNodo.pai;
+					if( pai == null && umNodo == raiz ) {
+						umNodo.pai = novoMeio;
+						novoMeio.pai = pai;
+						raiz = novoMeio;
+						novoMeio.adicionaFilho( umNodo );
+					} else if( pai != null && umNodo != raiz )
+						pai.trocaFilho( umNodo, novoMeio );
+					else
+						throw new Exception( "bbbbbbbb2" );
+				} else {
+					adicionaMeio( umNodo.filhos[ FILHOS.ESQ.ordinal() ], novoMeio );
+				}
+			}
+			
+		}
+	}
+
+	
+	public void add( String s ) throws Exception {
+		if( raiz == null ) {
+			raiz = new Nodo( TIPO.FIM );
+			raiz.chave = s;
+			return;
+		}
+		
+		Nodo novaFolha = new Nodo( TIPO.FIM );
+		novaFolha.chave = s;
+
+		Nodo umNodo = buscaSemelhante( raiz, s );
+		Nodo novoMeio = new Nodo( TIPO.MEIO );
+		novoMeio.adicionaFilho( novaFolha, umNodo.chave );
+		
+		adicionaMeio( raiz, novoMeio );
+	}
+	
+	public void add__OLD(String s) throws Exception {
 		if (raiz == null) {
 			raiz = new Nodo(TIPO.FIM);
 			raiz.chave = s;
