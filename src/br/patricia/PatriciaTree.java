@@ -1,6 +1,6 @@
 package br.patricia;
 
-import br.patricia.ui.TreeViewer;
+import br.patricia.util.IndexUtils;
 import br.patricia.util.StringUtil;
 
 
@@ -24,7 +24,7 @@ public class PatriciaTree {
 		if( umNodo.tipo == TIPO.FIM )
 			return umNodo;
 
-		char umChar = StringUtil.getChar( compara, umNodo.index );
+		char umChar = IndexUtils.getChar( compara, umNodo.index );
 		if( umChar <= umNodo.c )
 			return buscaSemelhante( umNodo.filhos[ FILHOS.ESQ.ordinal() ], compara );
 		else
@@ -64,7 +64,7 @@ public class PatriciaTree {
 		//int len = s.length();
 		//char umChar = ( umNoh.index < len ) ? s.charAt( umNoh.index ) : 0;
 		
-		char umChar = StringUtil.getChar( s, umNoh.index );
+		char umChar = IndexUtils.getChar( s, umNoh.index );
 		
 		if( umChar <= umNoh.c )
 			novoNoh = adiciona( umNoh.filhos[ FILHOS.ESQ.ordinal() ], s );
@@ -75,8 +75,10 @@ public class PatriciaTree {
 	}
 
 	public void adicionaMeio( Nodo umNodo, Nodo novoMeio ) throws Exception {
+
 		// ufa, encontrou uma folha... agora simm...
 		if( umNodo.tipo == TIPO.FIM ) {
+			
 			//if( umNodo == raiz )
 			//	raiz = novoMeio;
 			for( int i=0; i<novoMeio.filhos.length; i++ ) {

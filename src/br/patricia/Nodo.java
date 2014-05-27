@@ -1,6 +1,7 @@
 package br.patricia;
 
 import br.patricia.ui.ElementoUI;
+import br.patricia.util.IndexUtils;
 import br.patricia.util.StringUtil;
 
 enum TIPO {
@@ -43,9 +44,9 @@ class Nodo implements ElementoUI {
 		// antes de tudo, diz de quem o Nodo eh filhooo..
 		umFilho.pai = this;
 
-		index = StringUtil.indiceDaDiferenca( umFilho.chave,  compara );
-		char c1 = StringUtil.getChar( umFilho.chave, index );
-		char c2 = StringUtil.getChar( compara, index );
+		index = IndexUtils.indiceDaDiferenca( umFilho.chave,  compara );
+		char c1 = IndexUtils.getChar( umFilho.chave, index );
+		char c2 = IndexUtils.getChar( compara, index );
 		FILHOS f = FILHOS.ESQ;
 		this.c = c1;
 
@@ -64,10 +65,10 @@ class Nodo implements ElementoUI {
 		tipo = TIPO.MEIO;
 		chave = null;
 
-		index = StringUtil.indiceDaDiferenca(umNoh.chave, outroNoh.chave);
+		index = IndexUtils.indiceDaDiferenca(umNoh.chave, outroNoh.chave);
 		for( int j=0; j<osDois.length; j++ ) {
 			tamanho[j]=osDois[j].chave.length();
-			oChar[j] = StringUtil.getChar( osDois[j].chave, index );
+			oChar[j] = IndexUtils.getChar( osDois[j].chave, index );
 			osDois[j].pai = this;
 		}
 
