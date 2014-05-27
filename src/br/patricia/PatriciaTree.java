@@ -1,7 +1,6 @@
 package br.patricia;
 
 import br.patricia.util.IndexUtils;
-import br.patricia.util.StringUtil;
 
 
 public class PatriciaTree {

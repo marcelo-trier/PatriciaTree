@@ -2,7 +2,6 @@ package br.patricia;
 
 import br.patricia.ui.ElementoUI;
 import br.patricia.util.IndexUtils;
-import br.patricia.util.StringUtil;
 
 enum TIPO {
 	FIM, MEIO;
