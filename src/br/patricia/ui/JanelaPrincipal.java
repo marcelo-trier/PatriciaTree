@@ -20,6 +20,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import br.patricia.PatriciaTree;
+import br.patricia.v2.PatriciaTreeV2;
 
 public class JanelaPrincipal extends JFrame {
 
@@ -33,62 +34,73 @@ public class JanelaPrincipal extends JFrame {
 		return linhas;
 	}
 
-	
-	final String variasListas[][] = {
-			{ "aaa", "aaa" },
-			{ "aaa", "aa" },
-			{ "aaa", "aaaa" },
-			{ "aaa", "aab" },
-			{ "aaa", "baa" },
-			{ "aaa", "ba" },
-			{ "ba", "aaa" },
+	final String variasListas[][] = { 
+			{ "aaa", "aaa" }, // 0
+			{ "aaa", "aa" }, // 1
+			{ "aaa", "aaaa" }, // 2
+			{ "aaa", "aab" },  // 3
+			{ "aaa", "baa" }, // 4
+			{ "aaa", "ba" },  // 5
+			{ "ba", "aaa" },  // 6
 			{ "baaa", "aa" },
-			{ "aaa", "aba" },
-			{ "aab", "aaa" },
+			{ "aaa", "aba" }, 
+			{ "aab", "aaa" }, 
 			{ "aaa", "aa", "a" },
-			{ "aaa", "aa", "b" },
-			{ "aaa", "a", "aa" },
+			{ "aaa", "aa", "b" }, 
+			{ "aaa", "a", "aa" }, 
 			{ "aa", "a", "aaa" },
-			{ "aaa", "b" },
-			{ "b", "aaa", "c" },
+			{ "aaa", "b" }, 
+			{ "b", "aaa", "c" }, 
 			{ "aaa", "ba", "a" },
-			{ "aaa", "a", "ba" },
-			{ "a", "ba", "aaa" },
+			{ "aaa", "a", "ba" }, 
+			{ "a", "ba", "aaa" }, 
 			{ "a", "aaa", "ba" },
-			{ "ba", "aaa", "a" },
-			{ "ba", "a", "aaa" },
+			{ "ba", "aaa", "a" }, 
+			{ "ba", "a", "aaa" }, 
 			{ "aaa", "ab", "a" },
+			{ "aaa", "a", "ab" }, 
+			{ "aaa", "ab", "a" }, 
 			{ "aaa", "a", "ab" },
-			{ "aaa", "ab", "a" },
-			{ "aaa", "a", "ab" },
-			{ "ab", "aaa", "a" },
-			{ "ab", "a", "aaa" },
+			{ "ab", "aaa", "a" }, 
+			{ "ab", "a", "aaa" }, 
 			{ "a", "aaa", "ab" },
-			{ "a", "ab", "aaa" },
+			{ "a", "ab", "aaa" }, 
 			{ "bb", "b", "aaa" },
-			//{ "", "", "" },
+			{ "aaaa", "aab", "aa", "aaa" },
+	// { "", "", "" },
 	};
-	
+
 	public void clickGera() throws Exception {
-		
-		//String lista[] = capturaDicionario();
+		String umTeste[] = variasListas[ 31 ];
+		PatriciaTreeV2 pt;
+
+		pt = new PatriciaTreeV2();
+		// pt.treina( variasListas[ 11 ] );
+		pt.treina(umTeste);
+
+		JanelaArvore ja = new JanelaArvore( pt.raiz );
+		ja.setVisible(true);
+	}
+
+	public void clickGera__OLD() throws Exception {
+
+		// String lista[] = capturaDicionario();
 		String umTeste[] = { "aaaa", "aab", "aa", "aaa" };
-		//String umTeste[] = variasListas[ 11 ];
+		// String umTeste[] = variasListas[ 11 ];
 
 		PatriciaTree pt;
 
 		pt = new PatriciaTree();
-		//pt.treina( variasListas[ 11 ] );
-		pt.treina( umTeste );
+		// pt.treina( variasListas[ 11 ] );
+		pt.treina(umTeste);
 
-		TreeViewer myTreeViewer = new TreeViewer( pt.raiz );
+		TreeViewer myTreeViewer = new TreeViewer(pt.raiz);
 		myTreeViewer.setVisible(true);
-		
-/*		
-		for( String[] lista : variasListas ) {
-			pt = new PatriciaTree();
-			pt.treina( lista );
-		} */
+
+		/*
+		 * for( String[] lista : variasListas ) { pt = new PatriciaTree();
+		 * pt.treina( lista ); }
+		 */
 	}
 
 	public void clickConsultar() {

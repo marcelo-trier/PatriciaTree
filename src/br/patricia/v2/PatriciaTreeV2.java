@@ -26,7 +26,6 @@ public class PatriciaTreeV2 {
 			return buscaSemelhante(umElem.getEsquerda(), compara);
 		else
 			return buscaSemelhante(umElem.getDireita(), compara);
-
 	}
 
 	public void adicionaTronco(ElementoArvore umElem, TroncoV2 novoTronco)
@@ -39,9 +38,8 @@ public class PatriciaTreeV2 {
 			return;
 		}
 
-		if (!(umElem instanceof TroncoV2))
-			throw new Exception(
-					"existem tipos demais por aqui! Melhor VERIFICAR!!");
+		if ( !(umElem instanceof TroncoV2) )
+			throw new Exception( "existem tipos demais por aqui! Melhor VERIFICAR!!");
 
 		TroncoV2 umT = (TroncoV2) umElem;
 		int i1 = novoTronco.oIndice;

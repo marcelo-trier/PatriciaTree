@@ -125,6 +125,7 @@ public class TreeViewer extends JFrame {
 	}
 
 
+/*	
 	public static void main(String[] args) {
 
 		Elemento raiz;
@@ -160,5 +161,5 @@ public class TreeViewer extends JFrame {
 		frame.setVisible(true);
 
 	}
-
+*/
 }
