@@ -72,7 +72,8 @@ public class JanelaPrincipal extends JFrame {
 	};
 
 	public void clickGera() throws Exception {
-		String umTeste[] = variasListas[ 32 ];
+		//String umTeste[] = variasListas[ 32 ];
+		String umTeste[] = capturaDicionario();
 		PatriciaTreeV2 pt;
 
 		pt = new PatriciaTreeV2();

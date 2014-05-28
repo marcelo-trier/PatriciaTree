@@ -18,6 +18,8 @@ public class TroncoV2 extends ElementoArvore {
 			filhos[FILHOS.ESQ.ordinal()] = umFilho;
 		else
 			filhos[FILHOS.DIR.ordinal()] = umFilho;
+		
+		umFilho.oPai = this;
 	}
 
 	public void adicionaFilho(ElementoArvore elemento) throws Exception {
