@@ -67,11 +67,12 @@ public class JanelaPrincipal extends JFrame {
 			{ "a", "ab", "aaa" }, 
 			{ "bb", "b", "aaa" },
 			{ "aaaa", "aab", "aa", "aaa" },
+			{ "ccc", "bbb", "bba", "bb", "cca", "abb", "ccb", "cbc" },
 	// { "", "", "" },
 	};
 
 	public void clickGera() throws Exception {
-		String umTeste[] = variasListas[ 31 ];
+		String umTeste[] = variasListas[ 32 ];
 		PatriciaTreeV2 pt;
 
 		pt = new PatriciaTreeV2();

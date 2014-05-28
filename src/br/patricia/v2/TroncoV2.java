@@ -21,7 +21,22 @@ public class TroncoV2 extends ElementoArvore {
 	}
 
 	public void adicionaFilho(ElementoArvore elemento) throws Exception {
+		// salva o pai do elemento
+		ElementoArvore umPai = elemento.oPai;
+
+		// faz o elemento ser filho dele
 		filhos[filhoIndex(null)] = elemento;
+		// faz este tronco ser pai do elemento
+		elemento.oPai = this;
+
+		// faz o pai deste ter o pai do outro
+		this.oPai = umPai;
+
+		// faz o pai atualizar a referencia do outro filho para este de agora
+		if( umPai != null && umPai instanceof TroncoV2 ) {
+			TroncoV2 umT = ( TroncoV2 )umPai;
+			umT.trocaFilho( elemento, this );
+		}
 	}
 
 	public int filhoIndex(Object o) throws Exception {
@@ -32,7 +47,7 @@ public class TroncoV2 extends ElementoArvore {
 		return idxF;
 	}
 
-	public void trocaFilho(TroncoV2 filhoAntigo, TroncoV2 novoFilho)
+	public void trocaFilho(ElementoArvore filhoAntigo, TroncoV2 novoFilho)
 			throws Exception {
 		filhos[filhoIndex(filhoAntigo)] = novoFilho;
 	}

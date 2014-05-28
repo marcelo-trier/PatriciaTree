@@ -28,13 +28,19 @@ public class PatriciaTreeV2 {
 			return buscaSemelhante(umElem.getDireita(), compara);
 	}
 
+	public void posicionaElemento( ElementoArvore umEl, TroncoV2 novoT ) throws Exception {
+		novoT.adicionaFilho( umEl );
+		if ( umEl == raiz ) {
+			raiz = novoT;
+		}
+	}
+
+	// funcao recursivaaa...
 	public void adicionaTronco(ElementoArvore umElem, TroncoV2 novoTronco)
 			throws Exception {
 
 		if (umElem instanceof FolhaV2) {
-			novoTronco.adicionaFilho(umElem);
-			if (umElem == raiz)
-				raiz = novoTronco;
+			posicionaElemento( umElem, novoTronco );
 			return;
 		}
 
@@ -48,9 +54,7 @@ public class PatriciaTreeV2 {
 		char c2 = umT.oChar;
 
 		if ((i1 < i2) || (i1 == i2 && c1 < c2)) {
-			novoTronco.adicionaFilho(umT);
-			if (umT == raiz)
-				raiz = novoTronco;
+			posicionaElemento( umElem, novoTronco );
 			return;
 		}
 
