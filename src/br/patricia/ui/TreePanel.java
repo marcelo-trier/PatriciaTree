@@ -9,12 +9,12 @@ import javax.swing.border.EmptyBorder;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 
-import br.patricia.v2.ElementoArvore;
+import br.patricia.ElementoArvore;
 
 public class TreePanel extends JPanel {
 
-	static public int CANVAS_HEIGHT = 1000;
-	static public int CANVAS_WIDTH = 1500;
+	static public int CANVAS_WIDTH = 800;
+	static public int CANVAS_HEIGHT = 600;
 
 	private int rootY = 10;
 	private int NODE_SIZE = 40;

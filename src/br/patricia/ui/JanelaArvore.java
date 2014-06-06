@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import br.patricia.v2.ElementoArvore;
+import br.patricia.ElementoArvore;
 
 public class JanelaArvore extends JFrame {
 

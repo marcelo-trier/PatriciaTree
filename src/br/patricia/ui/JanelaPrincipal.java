@@ -19,8 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
-import br.patricia.PatriciaTree;
-import br.patricia.v2.PatriciaTreeV2;
+import br.patricia.PatriciaTreeV2;
 
 public class JanelaPrincipal extends JFrame {
 
@@ -82,27 +81,6 @@ public class JanelaPrincipal extends JFrame {
 
 		JanelaArvore ja = new JanelaArvore( pt.raiz );
 		ja.setVisible(true);
-	}
-
-	public void clickGera__OLD() throws Exception {
-
-		// String lista[] = capturaDicionario();
-		String umTeste[] = { "aaaa", "aab", "aa", "aaa" };
-		// String umTeste[] = variasListas[ 11 ];
-
-		PatriciaTree pt;
-
-		pt = new PatriciaTree();
-		// pt.treina( variasListas[ 11 ] );
-		pt.treina(umTeste);
-
-		TreeViewer myTreeViewer = new TreeViewer(pt.raiz);
-		myTreeViewer.setVisible(true);
-
-		/*
-		 * for( String[] lista : variasListas ) { pt = new PatriciaTree();
-		 * pt.treina( lista ); }
-		 */
 	}
 
 	public void clickConsultar() {
