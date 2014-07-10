@@ -76,6 +76,20 @@ public class PatriciaTreeV2 {
 		adicionaTronco(umT.getDireita(), novoTronco);
 	}
 
+	public ElementoArvore search( String umaChave ) {
+
+		FolhaV2 umaF = buscaSemelhante(raiz, umaChave );
+/*		int idx = IndexUtils.indiceDaDiferenca(umaF.chave, novaFolha.chave);
+		char umC;
+		if (IndexUtils.verificaMenorChar(novaFolha.chave, umaF.chave, idx))
+			umC = IndexUtils.getChar(novaFolha.chave, idx);
+		else
+			umC = IndexUtils.getChar(umaF.chave, idx);
+
+	*/	
+		return umaF;
+	}
+	
 	public void add(String s) throws Exception {
 
 		if (raiz == null) {

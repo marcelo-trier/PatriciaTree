@@ -24,7 +24,7 @@ public class JanelaArvore extends JFrame {
 	public JanelaArvore() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 512, 358);
+		setBounds(100, 100, 512, 500);
 		setContentPane(contentPane);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -19,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import br.patricia.ElementoArvore;
 import br.patricia.PatriciaTreeV2;
 
 public class JanelaPrincipal extends JFrame {
@@ -26,54 +28,18 @@ public class JanelaPrincipal extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtConsultar;
 	private JTextArea txtArea;
-
+	private PatriciaTreeV2 pt = null;
+	
 	public String[] capturaDicionario() {
 		ArrayList<String> lista = new ArrayList<String>();
 		String linhas[] = txtArea.getText().split("\n");
 		return linhas;
 	}
 
-	final String variasListas[][] = { 
-			{ "aaa", "aaa" }, // 0
-			{ "aaa", "aa" }, // 1
-			{ "aaa", "aaaa" }, // 2
-			{ "aaa", "aab" },  // 3
-			{ "aaa", "baa" }, // 4
-			{ "aaa", "ba" },  // 5
-			{ "ba", "aaa" },  // 6
-			{ "baaa", "aa" },
-			{ "aaa", "aba" }, 
-			{ "aab", "aaa" }, 
-			{ "aaa", "aa", "a" },
-			{ "aaa", "aa", "b" }, 
-			{ "aaa", "a", "aa" }, 
-			{ "aa", "a", "aaa" },
-			{ "aaa", "b" }, 
-			{ "b", "aaa", "c" }, 
-			{ "aaa", "ba", "a" },
-			{ "aaa", "a", "ba" }, 
-			{ "a", "ba", "aaa" }, 
-			{ "a", "aaa", "ba" },
-			{ "ba", "aaa", "a" }, 
-			{ "ba", "a", "aaa" }, 
-			{ "aaa", "ab", "a" },
-			{ "aaa", "a", "ab" }, 
-			{ "aaa", "ab", "a" }, 
-			{ "aaa", "a", "ab" },
-			{ "ab", "aaa", "a" }, 
-			{ "ab", "a", "aaa" }, 
-			{ "a", "aaa", "ab" },
-			{ "a", "ab", "aaa" }, 
-			{ "bb", "b", "aaa" },
-			{ "aaaa", "aab", "aa", "aaa" },
-			{ "ccc", "bbb", "bba", "bb", "cca", "abb", "ccb", "cbc" },
-	// { "", "", "" },
-	};
-
 	public void clickGera() throws Exception {
 		//String umTeste[] = variasListas[ 32 ];
 		String umTeste[] = capturaDicionario();
-		PatriciaTreeV2 pt;
+//		PatriciaTreeV2 pt;
 
 		pt = new PatriciaTreeV2();
 		// pt.treina( variasListas[ 11 ] );
@@ -85,9 +51,25 @@ public class JanelaPrincipal extends JFrame {
 
 	public void clickConsultar() {
 		String str = txtConsultar.getText();
-		int index = 1;
-		int i = str.indexOf('b');
-		JOptionPane.showMessageDialog(this, "i = " + i);
+//		int i = str.indexOf('b');
+//		JOptionPane.showMessageDialog(this, "i = " + i);
+		if( pt == null )
+			return;
+
+		ElementoArvore e = pt.search( str );
+		List<String> ls = new ArrayList<String>();
+		while( e.getPai() != null ) {
+			ls.add( e.toString() );
+			e = e.getPai();
+		}
+		ls.add( e.toString() );
+		Collections.reverse( ls );
+		String msg = "O caminho para encontrar o mais semelhante foi: \n";
+		int cont = 1;
+		for( String s : ls ) {
+			msg += cont++ + ": " + s + "\n";
+		}
+		JOptionPane.showMessageDialog( this, msg );
 	}
 
 	public JanelaPrincipal() {
@@ -130,7 +112,7 @@ public class JanelaPrincipal extends JFrame {
 
 		txtConsultar = new JTextField();
 		txtConsultar.setText("abcdef");
-		txtConsultar.setBounds(183, 154, 153, 35);
+		txtConsultar.setBounds(180, 182, 153, 35);
 		contentPane.add(txtConsultar);
 		txtConsultar.setColumns(10);
 
@@ -140,7 +122,7 @@ public class JanelaPrincipal extends JFrame {
 				clickConsultar();
 			}
 		});
-		btnNewButton.setBounds(183, 201, 153, 25);
+		btnNewButton.setBounds(180, 229, 153, 25);
 		contentPane.add(btnNewButton);
 	}
 }
